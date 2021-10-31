@@ -12,8 +12,8 @@ Expected response would be string with `n` as words in `lang` locale.
 ### Installation
 
 - `git clone git@github.com:vladislav-pone/api-test.git`
-- `docker run --rm --interactive --tty --volume $PWD:/app composer composer install` to install composer packages 
-- `docker compose up -d` run project for first time 
+- `docker compose up -d` run project for first time
+- `docker compose exec fpm composer install` to install composer packages
 - `docker compose exec fpm php artisan key:generate` After first run set Laravel app key
 
 ### To start API server
@@ -23,7 +23,16 @@ Expected response would be string with `n` as words in `lang` locale.
 - `docker compose down`
 
 ### Usage (via curl)
-- `curl http://localhost/?n=100&lang=eng` should return `one hundred`
+- `curl http://localhost/\?n\=100\&lang\=eng` should return `one hundred`
+- `curl http://localhost\?n\=49\&lang\=lat` should return `četrdesmit deviņi`
+
+### Helpful commands
+- `docker compose exec fpm bash` - log into php container
+- `docker compose exec fpm composer install` - to quickly run composer
+
+### How to test
+
+`docker compose exec fpm php artisan test`
 
 ## License
 
