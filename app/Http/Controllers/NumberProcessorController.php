@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\NumberProcessorRequest;
 use Illuminate\Http\Response;
 
 class NumberProcessorController extends Controller
 {
-    public function __invoke(Request $request): Response
+    public function __invoke(NumberProcessorRequest $request): Response
     {
-        // TODO Make Request validator
         // TODO Process number from request
         // TODO Add locale support
         return response('success');
