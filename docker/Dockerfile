@@ -6,11 +6,15 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     php composer-setup.php && \
     php -r "unlink('composer-setup.php');" && \
     mv composer.phar /usr/local/bin/composer
+# Install unzip to help composer
+RUN apt-get update && \
+    apt-get install -y unzip && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install project dependencies
 RUN apt-get update && \
-    apt-get install -y libonig-dev libicu-dev && \
+    apt-get install -y libicu-dev && \
     rm -rf /var/lib/apt/lists/*
-RUN docker-php-ext-install mbstring intl
+RUN docker-php-ext-install intl
 
 WORKDIR /var/www
