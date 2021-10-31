@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\Rule;
 
 class NumberProcessorRequest extends AbstractApiFormRequest
 {
@@ -15,7 +16,7 @@ class NumberProcessorRequest extends AbstractApiFormRequest
     {
         return [
             'n' => ['integer', 'required', 'min:0', 'max:9999'],
-            'lang' => ['string', 'required', 'size:3'], // TODO check if selected locale exists
+            'lang' => ['string', 'required', 'size:3', Rule::in(array_keys(self::NORMALIZED_LOCALES))],
         ];
     }
 
