@@ -4,22 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NumberProcessorRequest;
 use Illuminate\Http\Response;
-use NumberFormatter;
 
 class NumberProcessorController extends Controller
 {
     public function __invoke(NumberProcessorRequest $request): Response
     {
-        $result = $this->convertNumberToWords(
-            $request->get('n'),
-            $request->get('lang')
-        );
+        $converter = app('converters.numbersToWords', ['locale' => $request->get('lang')]);
+        $result = $converter->convert($request->get('n'));
         return response("$result\n");
-    }
-
-    protected function convertNumberToWords(string $number, string $locale): string
-    {
-        $formatter = new NumberFormatter($locale, NumberFormatter::SPELLOUT);
-        return $formatter->format($number);
     }
 }
