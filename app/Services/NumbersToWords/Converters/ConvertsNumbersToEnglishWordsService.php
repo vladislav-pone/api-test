@@ -9,7 +9,7 @@ class ConvertsNumbersToEnglishWordsService implements ConvertsNumbersToWords
 {
     public const LOCALE_NAME = 'en';
 
-    public static function convert(int $number): string
+    public function convert(int $number): string
     {
         $formatter = new NumberFormatter(self::LOCALE_NAME, NumberFormatter::SPELLOUT);
         return $formatter->format($number);
