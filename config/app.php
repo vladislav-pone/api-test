@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\NumbersToWordsConversionServiceProvider;
+
 return [
 
     /*
@@ -175,6 +177,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Project Internal Service Providers...
+         */
+        NumbersToWordsConversionServiceProvider::class,
     ],
 
     /*
